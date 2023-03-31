@@ -1,0 +1,146 @@
+object Form1: TForm1
+  Left = 2280
+  Top = 169
+  Caption = 'Form1'
+  ClientHeight = 417
+  ClientWidth = 609
+  Color = clBlack
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 40
+    Top = 16
+    Width = 529
+    Height = 377
+    BevelOuter = bvNone
+    BevelWidth = 9
+    Color = 4276545
+    ParentBackground = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 335
+      Top = 2
+      Width = 90
+      Height = 13
+      Caption = 'RECIEVER MEMO'
+    end
+    object SettingButton: TButton
+      Left = 16
+      Top = 16
+      Width = 75
+      Height = 25
+      Caption = 'Setting'
+      TabOrder = 0
+      OnClick = SettingButtonClick
+    end
+    object DisconnectButton: TButton
+      Left = 16
+      Top = 128
+      Width = 75
+      Height = 25
+      Caption = 'Disconnect'
+      TabOrder = 1
+      OnClick = DisconnectButtonClick
+    end
+    object ConnectButton: TButton
+      Left = 16
+      Top = 70
+      Width = 75
+      Height = 25
+      Caption = 'Connect'
+      TabOrder = 2
+      OnClick = ConnectButtonClick
+    end
+    object memo: TMemo
+      Left = 263
+      Top = 18
+      Width = 233
+      Height = 337
+      TabOrder = 3
+    end
+    object SendButton: TButton
+      Left = 136
+      Top = 112
+      Width = 75
+      Height = 25
+      Caption = 'Send'
+      Enabled = False
+      TabOrder = 4
+      OnClick = SendButtonClick
+    end
+    object chat_memo: TMemo
+      Left = 114
+      Top = 73
+      Width = 121
+      Height = 33
+      Enabled = False
+      TabOrder = 5
+    end
+    object GreenLed: TPanel
+      Left = 16
+      Top = 96
+      Width = 75
+      Height = 9
+      Color = 10240
+      ParentBackground = False
+      TabOrder = 6
+    end
+    object RedLed: TPanel
+      Left = 16
+      Top = 152
+      Width = 75
+      Height = 9
+      Color = 40
+      ParentBackground = False
+      TabOrder = 7
+    end
+    object BlueLed: TPanel
+      Left = 136
+      Top = 135
+      Width = 75
+      Height = 9
+      Color = 2621440
+      ParentBackground = False
+      TabOrder = 8
+    end
+  end
+  object ComPort1: TComPort
+    BaudRate = br9600
+    Port = 'COM1'
+    Parity.Bits = prNone
+    StopBits = sbOneStopBit
+    DataBits = dbEight
+    Events = [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full]
+    FlowControl.OutCTSFlow = False
+    FlowControl.OutDSRFlow = False
+    FlowControl.ControlDTR = dtrDisable
+    FlowControl.ControlRTS = rtsDisable
+    FlowControl.XonXoffOut = False
+    FlowControl.XonXoffIn = False
+    StoredProps = [spBasic]
+    TriggersOnRxChar = False
+    Left = 8
+    Top = 8
+  end
+  object ComDataPacket1: TComDataPacket
+    ComPort = ComPort1
+    IncludeStrings = True
+    OnPacket = ComDataPacket1Packet
+    Left = 8
+    Top = 40
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 30
+    OnTimer = Timer1Timer
+    Left = 8
+    Top = 376
+  end
+end

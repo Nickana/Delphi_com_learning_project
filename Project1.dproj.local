@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.606,D:\Projects\For_Studs\ComPortDelphi7Learnings\Unit1.dfm=D:\Projects\Projects with GIT\Delphi_com_learning_project\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.895,D:\Projects\For_Studs\ComPortDelphi7Learnings\Project1.dproj=D:\Projects\Projects with GIT\Delphi_com_learning_project\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.606,D:\Projects\For_Studs\ComPortDelphi7Learnings\Unit1.pas=D:\Projects\Projects with GIT\Delphi_com_learning_project\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
