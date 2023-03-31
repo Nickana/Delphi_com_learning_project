@@ -105,6 +105,7 @@ begin
 end;
 
 
+
 procedure TForm1.ConnectButtonClick(Sender: TObject);
 
 begin
@@ -114,12 +115,12 @@ begin
   except
     ShowMessage('Failed connection to this com-port!')
     end;
-  if ComPort1.Connected then
-    begin
+  if ComPort1.Connected then begin
     GreenLed.Color := GreenOnLed;
     RedLed.Color := RedOffLed;
     SendButton.Enabled := True;
     chat_memo.Enabled := True;
+
     end;
 
 end;
@@ -141,6 +142,7 @@ end;
 
 procedure TForm1.SendButtonClick(Sender: TObject);
 var
+
 i:Integer;
 Line: string;
 
@@ -155,22 +157,9 @@ end;
 
 
 procedure TForm1.ComDataPacket1Packet(Sender: TObject; const Str: String);
-
-var
-  i: integer;
-  stroka : String;
-  symbol: char;
-
 begin
-  stroka := '';
 
-  for i := 1 to Length(Str) do
-    begin
-    symbol := Str[i];
-    stroka := stroka + IntToHex(Integer(symbol),2) + ' ';
-    end;
-
-    memo.Lines.add(stroka);
+  memo.Lines.Add(Str);
 
 end;
 

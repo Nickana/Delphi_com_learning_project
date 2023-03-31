@@ -155,23 +155,13 @@ end;
 
 
 procedure TForm1.ComDataPacket1Packet(Sender: TObject; const Str: String);
-
 var
-  i: integer;
-  stroka : String;
-  symbol: char;
+ bMessage: Byte;
 
 begin
-  stroka := '';
+  bMessage := StrToInt(Str);
 
-  for i := 1 to Length(Str) do
-    begin
-    symbol := Str[i];
-    stroka := stroka + IntToHex(Integer(symbol),2) + ' ';
-    end;
-
-    memo.Lines.add(stroka);
-
+  memo.Lines.Add(IntToStr(bMessage));
 end;
 
 
