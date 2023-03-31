@@ -87,14 +87,7 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 begin
 
   tick := tick+1;
-  if (tick mod  2 > 0) then
-      begin
-        BlueLed.Color := BlueOnLed;
-      end
-    else
-      begin
-          BlueLed.Color := BlueOffLed;
-      end;
+
 
   if tick = 8 then
     begin
