@@ -97,6 +97,9 @@ begin
         else
           result := '0' + result;
       end;
+
+
+        result :=' ' + result;;
     end;
 
 

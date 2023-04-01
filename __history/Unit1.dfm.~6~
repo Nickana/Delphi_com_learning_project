@@ -112,20 +112,6 @@ object Form1: TForm1
       ParentBackground = False
       TabOrder = 8
     end
-    object OutputRadioGroup: TRadioGroup
-      Left = 136
-      Top = 143
-      Width = 88
-      Height = 58
-      Caption = 'Output mode'
-      Enabled = False
-      ItemIndex = 0
-      Items.Strings = (
-        'Echo'
-        'Hexidecimal'
-        'Binary')
-      TabOrder = 9
-    end
   end
   object ComPort1: TComPort
     BaudRate = br9600
@@ -158,5 +144,15 @@ object Form1: TForm1
     OnTimer = Timer1Timer
     Left = 8
     Top = 376
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 184
+    Top = 224
+    object Echomode1: TMenuItem
+      Caption = 'Echo mode'
+    end
+    object Echomode2: TMenuItem
+      Caption = 'String to hexidecimal'
+    end
   end
 end
