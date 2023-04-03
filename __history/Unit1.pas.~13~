@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, CPort, ExtCtrls, CPortCtl{high-precision timer};
+  Dialogs, StdCtrls, CPort, ExtCtrls, CPortCtl, Vcl.Menus{high-precision timer};
 
 type
   TForm1 = class(TForm)
@@ -22,6 +22,8 @@ type
     RedLed: TPanel;
     BlueLed: TPanel;
     Timer1: TTimer;
+    OutputRadioGroup: TRadioGroup;
+    label2: TLabel;
 
 
     procedure SettingButtonClick(Sender: TObject);
@@ -32,12 +34,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
 
+    function StringToHex(str: String) : string;
+    function StringToBinary(str:string) : string;
+
   private
     { Private declarations }
 
   public
     { Public declarations }
-
 
   end;
 
@@ -76,12 +80,49 @@ begin
 end;
 
 
+{My function's--------------------------------------}
+function TForm1.StringToBinary(str: string): string;
+var
+  z: integer;
+  i: integer;
+  symbol: char;
+begin
+  result := '';
+  for i := 1 to Length(str) do
+    begin
+      symbol:= str[i];
+      begin
+        for z := 0 to 8 - 1 do
+          if Integer(symbol) and (1 shl z) > 0 then
+          result := '1' + result
+        else
+          result := '0' + result;
+      end;
+    end;
 
+
+end;
+
+function TForm1.StringToHex(str: String): string;
+var
+  i:integer;
+  symbol: char;
+  begin
+  result:= '';
+    for i := 1 to Length(str) do
+      begin
+        symbol:= str[i];
+        result := result + IntToHex(Integer(symbol),2) + ' ';
+      end;
+  end;
+
+{----------------------------------------------------}
 
 procedure TForm1.SettingButtonClick(Sender: TObject);
 begin
  ComPort1.ShowSetupDialog();
 end;
+
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
@@ -105,7 +146,6 @@ begin
 end;
 
 
-
 procedure TForm1.ConnectButtonClick(Sender: TObject);
 
 begin
@@ -115,12 +155,13 @@ begin
   except
     ShowMessage('Failed connection to this com-port!')
     end;
-  if ComPort1.Connected then begin
+  if ComPort1.Connected then
+    begin
     GreenLed.Color := GreenOnLed;
     RedLed.Color := RedOffLed;
     SendButton.Enabled := True;
     chat_memo.Enabled := True;
-
+    OutputRadioGroup.Enabled := True;
     end;
 
 end;
@@ -134,17 +175,19 @@ begin
       GreenLed.Color := GreenOffLed;
       SendButton.Enabled := False;
       chat_memo.Enabled := False;
+      OutputRadioGroup.Enabled := False;
     end
   else
     ShowMessage('com port is not connected if what nah...')
 
 end;
 
+
 procedure TForm1.SendButtonClick(Sender: TObject);
 var
-
 i:Integer;
 Line: string;
+
 
 begin
   Timer1.Enabled :=True;
@@ -152,16 +195,21 @@ begin
       begin
       Line := chat_memo.Lines.Strings[i];
       ComPort1.WriteStr(Line);
+      z := 47 Shl 36;
+      memo.lines.add(IntToStr()
       end;
 end;
 
 
 procedure TForm1.ComDataPacket1Packet(Sender: TObject; const Str: String);
+
 begin
+  case OutputRadioGroup.ItemIndex of
+    0: memo.Lines.Add(Str);
+    1: memo.Lines.Add(StringToHex(Str));
+    2: memo.Lines.Add(StringToBinary(Str));
+  end;
 
-  memo.Lines.Add(Str);
-
-end;
-
+  end;
 
 end.

@@ -23,6 +23,7 @@ type
     BlueLed: TPanel;
     Timer1: TTimer;
     OutputRadioGroup: TRadioGroup;
+    label2: TLabel;
 
 
     procedure SettingButtonClick(Sender: TObject);
@@ -96,6 +97,10 @@ begin
           result := '1' + result
         else
           result := '0' + result;
+      end;
+      if i < Length(str) then
+      begin
+        result:= '  ' + result;
       end;
     end;
 
@@ -186,6 +191,7 @@ procedure TForm1.SendButtonClick(Sender: TObject);
 var
 i:Integer;
 Line: string;
+
 
 begin
   Timer1.Enabled :=True;
